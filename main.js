@@ -69,7 +69,7 @@ function drawMatrix(matrix) {
 console.log(zhardanoGaussMethod(2, 3, 1, 2))
 
 let arr = [1, 3, 5, 7, 9, 10]
-///O(n) LogN
+///O(LogN)
 function yoptaBinarySearch(array, item) {
     let low = 0
     let high = array.length - 1
