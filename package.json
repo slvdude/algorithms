@@ -1,11 +1,22 @@
 {
   "name": "projects",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "node main.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slvdude/algorithms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slvdude/algorithms/issues"
+  },
+  "homepage": "https://github.com/slvdude/algorithms#readme",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^18.8.4"
+  }
 }
