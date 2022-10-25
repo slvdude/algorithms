@@ -1,24 +1,24 @@
-// function createMatrix(a, b) {
-//     let matrix = new Array(a)
+function createMatrix(a, b) {
+    let matrix = new Array(a)
 
-//     for (let i = 0; i < matrix.length; i++) {
-//         matrix[i] = new Array(b)
-//     }
+    for (let i = 0; i < matrix.length; i++) {
+        matrix[i] = new Array(b)
+    }
 
-//     matrix = fillMatrix(matrix)
+    matrix = fillMatrix(matrix)
 
-//     return matrix
-// }
+    return matrix
+}
 
-// function fillMatrix(matrix) {
-//     for (let i = 0; i < matrix.length; i++) {
-//         for (let j = 0; j < matrix[i].length; j++) {
-//             matrix[i][j] = Math.round(Math.random() * 100)
-//         }
-//     }
+function fillMatrix(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            matrix[i][j] = Math.round(Math.random() * 100)
+        }
+    }
 
-//     return matrix
-// }
+    return matrix
+}
 
 const readline = require("readline");
 const rl = readline.createInterface({
@@ -32,10 +32,13 @@ let _matrix = [
   [10, 1, -1, -2, 3],
 ];
 
+let arrRazrElems = []
+
 function zhardanoGaussMethod(matrix, k = 1, s = 4) {
   const m = matrix.length;
   const n = matrix[0].length;
-
+  arrRazrElems.push({k, s})
+  checkMatrix(matrix, m, n);
   console.log({ m, n });
   let matrixCopy = JSON.parse(JSON.stringify(matrix));
 
@@ -71,6 +74,10 @@ function zhardanoGaussMethod(matrix, k = 1, s = 4) {
     }
   }
 
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i].splice(s, 1);
+  }
+
   drawMatrix(matrix);
   return matrix;
 }
@@ -82,6 +89,45 @@ function drawMatrix(matrix) {
       matrix[i][j] = +matrix[i][j].toFixed(2);
     }
     console.log(matrix[i].join("  ") + "\n");
+  }
+}
+
+function checkMatrix(matrix, m, n) {
+  let sum = 0;
+  let sumVect = 0;
+
+  for (let i = 0; i < m; i++)
+  {
+    let rowSum = 0;
+
+    for (let j = 0; j < n; j++)
+    {
+        sum += matrix[i][j+1];
+        rowSum += matrix[i][j+1];
+    }
+
+    sumVect += matrix[i][0];
+
+    let vect = matrix[i][0];
+
+    if (rowSum == 0 && vect != 0) {
+      console.log("Система не имеет решений");
+      drawMatrix(matrix);
+      return;
+    }
+
+    if (rowSum == vect) {
+      console.log("Система совметсна");
+      drawMatrix(matrix);
+      return;
+    }
+  }
+
+  if (sum == 0 && sumVect == 0)
+  {
+      console.WriteLine("Система имеет бесконечное количество решений");
+      drawMatrix(matrix);
+      return;
   }
 }
 
